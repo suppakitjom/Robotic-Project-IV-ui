@@ -22,6 +22,10 @@ window.onload = function () {
 	reattachDeleteHandlers(); // Reattach event handlers
 };
 
+document.getElementById("openScheduleModalBtn").onclick = function () {
+	showScheduleModal(); // You might need to adjust showModal function if it requires parameters
+};
+
 function reattachDeleteHandlers() {
 	const deleteButtons = document.querySelectorAll(".schedule-item button");
 	deleteButtons.forEach((button) => {
@@ -46,7 +50,6 @@ function showModal(message) {
 	modalText.textContent = message;
 	modal.style.display = "block";
 }
-
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
 	modal.style.display = "none";
@@ -56,7 +59,23 @@ span.onclick = function () {
 window.onclick = function (event) {
 	if (event.target == modal) {
 		modal.style.display = "none";
+		scheduleModal.style.display = "none";
 	}
+};
+
+// After the window.onload function
+var scheduleModal = document.getElementById("scheduleModal"); // Make sure this ID matches the one in the HTMLs
+// Get the close button element for the schedule modal
+var scheduleSpan = document.getElementsByClassName("closeSchedule")[0]; // Assuming there's only one, use querySelector
+var scheduleModalText = document.getElementById("scheduleModalText");
+
+function showScheduleModal(message) {
+	scheduleModalText.textContent = message;
+	scheduleModal.style.display = "block";
+}
+
+scheduleSpan.onclick = function () {
+	scheduleModal.style.display = "none";
 };
 
 // Replace previous alert calls with showModal
@@ -105,10 +124,10 @@ function setSchedule() {
 		updateScheduleList(); // Update the display after adding a new schedule
 
 		// Instead of alert, use showModal to display confirmation
-		showModal("Schedule set successfully for " + timeString);
+		showScheduleModal("Schedule set successfully for " + timeString);
 	} else {
 		// Use showModal instead of alert for error message
-		showModal("This time is already scheduled.");
+		showScheduleModal("This time is already scheduled.");
 	}
 
 	// add to local storage

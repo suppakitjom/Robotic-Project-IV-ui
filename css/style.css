@@ -60,13 +60,13 @@ h1 {
     width: 35%;
     margin: auto;
     margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     display: block;
 }
 
 .schedule-title h2 {
     color: #d63384; /* Pink color for the subheading */
-    margin-bottom: 20px;
+    flex: 1; /* This will make each child flex and divide the space equally */
 }
 
 button {
@@ -80,6 +80,7 @@ button {
     margin: 10px auto; /* Centers the button with auto margins */
     display: block; /* Ensures the button takes its own line */
     font-weight: bold; /* Make the text bolder */
+    font-size: 15px;
 }
 
 
@@ -96,7 +97,7 @@ select {
 }
 
 .schedule-form {
-    margin-top: 20px;
+    margin-top: 30px;
     background-color: #fff0f3; /* Very light pink background for form area */
     border-radius: 8px; /* Rounded corners for the form area */
     padding: 20px;
@@ -228,6 +229,7 @@ select {
     font-weight: bold;
   }
   
+
   .close:hover,
   .close:focus {
     color: #c5286d; /* Darker pink on hover */
@@ -235,3 +237,37 @@ select {
     cursor: pointer;
   }
   
+.closeSchedule {
+    color: #d63384; /* Pink color */
+    float: right;
+    font-size: 25px; /* Adjust size */
+    font-weight: bold;
+  }
+
+    .closeSchedule:hover,
+    .closeSchedule:focus {
+        color: #c5286d; /* Darker pink on hover */
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .schedule-title {
+        display: flex;
+        justify-content: space-between; /* This will put the maximum space between the two elements */
+        align-items: center; /* This will center them vertically */
+        padding: 10px;
+        border-radius: 4px 4px 0 0;
+    }
+    
+    .schedule-title button {
+
+    background-color: #d63384; /* Pink color for buttons */
+    color: #ffffff; /* White text on buttons */
+    border: none;
+    border-radius: 4px; /* Rounded corners for buttons */
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth transition for button hover effect */
+    font-weight: bold; /* Make the text bolder */
+    font-size: 20px;
+    }
+    

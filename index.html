@@ -14,13 +14,9 @@
 				<p id="modalText">Some custom message here!</p>
 			</div>
 		</div>
-		<div class="container">
-			<h1>Automatic Pet Feeder</h1>
-			<div class="container2">
-				<img id="dawg" src="img/dawg.png" alt="Pet Image" />
-				<div class="feed-now-container">
-					<button id="feedNowBtn">Feed Now</button>
-				</div>
+		<div id="scheduleModal" class="modal">
+			<div class="modal-content">
+				<span class="closeSchedule">&times;</span>
 				<div class="schedule-form">
 					<div class="time-selector">
 						<div class="time-selector-item">
@@ -46,8 +42,21 @@
 					</div>
 					<button onclick="setSchedule()">Set Schedule</button>
 				</div>
+				<p id="scheduleModalText">Some custom message here!</p>
+			</div>
+		</div>
+		<div class="container">
+			<h1>Automatic Pet Feeder</h1>
+			<div class="container2">
+				<img id="dawg" src="img/dawg.png" alt="Pet Image" />
+				<div class="feed-now-container">
+					<button id="feedNowBtn">Feed Now</button>
+				</div>
+
 				<div class="schedule-title">
 					<h2>Scheduled Feedings</h2>
+					<button id="openScheduleModalBtn">&plus;</button>
+					<!-- Add this button to open the modal -->
 				</div>
 				<div class="schedule-list" id="scheduleList">
 					<div id="noSchedules">No schedules set.</div>
