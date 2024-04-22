@@ -34,27 +34,54 @@ function reattachDeleteHandlers() {
 	});
 }
 
-// Handle the 'Feed Now' button
+// Get the modal element
+var modal = document.getElementById("myModal");
+// Get the element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// Get the paragraph inside the modal where the text will be displayed
+var modalText = document.getElementById("modalText");
+
+// Function to open the modal with a specific message
+function showModal(message) {
+	modalText.textContent = message;
+	modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+	modal.style.display = "none";
+};
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+	if (event.target == modal) {
+		modal.style.display = "none";
+	}
+};
+
+// Replace previous alert calls with showModal
 document.getElementById("feedNowBtn").onclick = function () {
-	alert("Your pet is being fed right now!");
-	// send a request to the server to feed the pet
-	fetch("http://127.0.0.1:5000/feed", {
+	fetch("http://172.20.10.2:5432/api/feed", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",
 		},
 		body: JSON.stringify({ feedNow: true }),
 	})
-		.then((response) => response.json())
+		.then((response) => {
+			if (!response.ok) {
+				throw new Error("Network response was not ok");
+			}
+			return response.json();
+		})
 		.then((data) => {
-			console.log(data);
+			showModal("Your pet has been fed!");
 		})
 		.catch((error) => {
-			console.error("Error:", error);
+			showModal("Failed to feed your pet. Please try again!");
 		});
 };
 
-// Handle the 'Set Schedule' button
 function setSchedule() {
 	const hour = document.getElementById("hour").value;
 	const minute = document.getElementById("minute").value;
@@ -76,8 +103,12 @@ function setSchedule() {
 
 		scheduleList.appendChild(listItem);
 		updateScheduleList(); // Update the display after adding a new schedule
+
+		// Instead of alert, use showModal to display confirmation
+		showModal("Schedule set successfully for " + timeString);
 	} else {
-		alert("This time is already scheduled.");
+		// Use showModal instead of alert for error message
+		showModal("This time is already scheduled.");
 	}
 
 	// add to local storage
@@ -105,7 +136,7 @@ function updateScheduleList() {
 
 	// posts the schedules to the server
 	const schedules = Array.from(scheduleItems).map((item) => item.textContent.trim().split("Delete")[0]);
-	fetch("http://127.0.0.1:5000/schedule", {
+	fetch("http://172.20.10.2:5432/api/schedule", {
 		method: "POST",
 		headers: {
 			"Content-Type": "application/json",

@@ -149,7 +149,6 @@ select {
   }
 
 
-
 #noSchedules {
     /* Adapt styles if necessary so it matches the scheduled items */
     color: #a9a9a9; /* Grey color to indicate inactive state */
@@ -195,3 +194,44 @@ select {
         margin-right: 0; /* No right margin for the last select element */
     }
 }
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 10; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content Box */
+  .modal-content {
+    background-color: #fff;
+    margin: 30% auto; /* Push down to center vertically in the view */
+    padding: 20px;
+    border: 1px solid #d63384; /* Pink border */
+    width: 50%; /* Adjust width */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Rounded corners */
+    text-align: center; /* Center the text */
+  }
+  
+  /* The Close Button */
+  .close {
+    color: #d63384; /* Pink color */
+    float: right;
+    font-size: 25px; /* Adjust size */
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #c5286d; /* Darker pink on hover */
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
